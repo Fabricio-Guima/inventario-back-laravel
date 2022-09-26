@@ -25,7 +25,7 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return ['teste'];
     }
 
     /**
@@ -59,6 +59,6 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        return ['teste'];
     }
 }
