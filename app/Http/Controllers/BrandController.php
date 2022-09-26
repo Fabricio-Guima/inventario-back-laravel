@@ -58,7 +58,7 @@ class BrandController extends Controller
      */
     public function update(Brand $brand, BrandRequest $request)
     {
-        return new BrandResource($this->service->update($brand->id, $request->validated()));
+        return new BrandResource($this->service->update($brand, $request->validated()));
     }
 
     /**

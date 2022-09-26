@@ -31,7 +31,7 @@ class BrandService
     return $this->repository->show($brand);
   }
 
-  public function update(String $brand, array $data)
+  public function update(Brand $brand, array $data)
   {
     return $this->repository->update($brand, $data);
   }

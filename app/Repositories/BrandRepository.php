@@ -36,8 +36,10 @@ class BrandRepository
     ])->first();
   }
 
-  public function update(String $brand, array $data)
+  public function update(Brand $brand, array $data)
   {
-    return $this->entity->where('id', $brand)->update($data);
+    $brand->fill($data);
+    $brand->save();
+    return $brand;
   }
 }
