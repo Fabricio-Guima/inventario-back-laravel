@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\MeasureController;
+use App\Http\Controllers\{
+    ArticleController,
+    BrandController,
+    CategoryController,
+    DocumentController,
+    MeasureController
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +34,9 @@ Route::apiResource(
 Route::apiResource(
     '/articles',
     ArticleController::class
+);
+
+Route::apiResource(
+    '/documents',
+    DocumentController::class
 );
