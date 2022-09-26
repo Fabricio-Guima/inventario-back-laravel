@@ -21,9 +21,7 @@ class BrandRepository
 
   public function store(array $data)
   {
-    $result = $this->entity->create($data);
-
-    return $result;
+    return $this->entity->create($data);
   }
 
   public function show(Brand $brand)
@@ -36,5 +34,10 @@ class BrandRepository
         'id', '=', $brand->id
       ]
     ])->first();
+  }
+
+  public function update(String $brand, array $data)
+  {
+    return $this->entity->where('id', $brand)->update($data);
   }
 }

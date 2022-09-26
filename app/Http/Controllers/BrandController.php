@@ -56,9 +56,9 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Brand $brand, BrandRequest $request)
     {
-        //
+        return new BrandResource($this->service->update($brand->id, $request->validated()));
     }
 
     /**
