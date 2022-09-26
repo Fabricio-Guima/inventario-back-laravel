@@ -22,7 +22,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return ['teste'];
+        return BrandResource::collection($this->service->index());
     }
 
     /**
@@ -35,7 +35,7 @@ class BrandController extends Controller
     {
         $data = $request->validated();
 
-        return new  BrandResource($this->service->store($data));
+        return new BrandResource($this->service->store($data));
     }
 
     /**
@@ -46,7 +46,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return new BrandResource($this->service->show($brand));
     }
 
     /**
