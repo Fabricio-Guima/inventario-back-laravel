@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Measure;
 use App\Models\User;
 use App\Repositories\MeasureRepository;
+use Illuminate\Http\Request;
 
 class MeasureService
 {
@@ -39,5 +40,10 @@ class MeasureService
   public function getUserAuth(): User
   {
     return auth()->user();
+  }
+
+  public function search(String $filter)
+  {
+    return $this->repository->search($filter);
   }
 }

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Measure;
+use Illuminate\Http\Request;
 
 class MeasureRepository
 {
@@ -40,5 +41,17 @@ class MeasureRepository
     $measure->fill($data);
     $measure->save();
     return $measure;
+  }
+
+  public function search(String $filter)
+  {
+    $result = $this->entity->where(function ($query) use ($filter) {
+      if ($filter) {
+        $query->orWhere('name', 'LIKE', "%${filter}%")->orWhere('code', 'LIKE', "%${filter}%");
+      }
+    })->latest()
+      ->paginate();
+
+    return $result;
   }
 }

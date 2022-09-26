@@ -68,4 +68,11 @@ class MeasureController extends Controller
     {
         return $measure->delete();
     }
+
+    public function search(Request $request)
+    {
+        $filter = $request->filter ?? '';
+
+        return $this->service->search($filter);
+    }
 }

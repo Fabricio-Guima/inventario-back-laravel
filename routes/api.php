@@ -26,6 +26,8 @@ Route::apiResource(
     MeasureController::class
 );
 
+Route::any('/search/measures',  [MeasureController::class, 'search']);
+
 Route::apiResource(
     '/categories',
     CategoryController::class
