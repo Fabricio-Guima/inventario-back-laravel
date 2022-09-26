@@ -9,5 +9,9 @@ class Measure extends Model
 {
     use HasFactory;
 
-    protected  $fillable = [];
+    protected  $fillable = [
+        'code',
+        'name',
+        'status'
+    ];
 }
