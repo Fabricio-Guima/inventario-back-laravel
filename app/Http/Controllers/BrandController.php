@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Services\BrandService;
 use Illuminate\Http\Request;
+
 
 class BrandController extends Controller
 {
+    public function __construct(BrandService $brandService)
+    {
+        $this->service = $brandService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +31,9 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        return ['teste'];
+        $data = $request->all();
+
+        return $this->service->store($data);
     }
 
     /**
