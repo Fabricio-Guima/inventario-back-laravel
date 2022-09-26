@@ -9,17 +9,17 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'barcode',
-        'brand_id',
-        'measure_id',
-        'category_id',
-        'buy',
-        'sale',
-        'min_stock',
-        'status'
-    ];
+    // protected $fillable = [
+    //     'name',
+    //     'barcode',
+    //     'brand_id',
+    //     'measure_id',
+    //     'category_id',
+    //     'buy',
+    //     'sale',
+    //     'min_stock',
+    //     'status'
+    // ];
 
     //relationships
     public function brand()
