@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MeasureRequest;
+use App\Http\Resources\MeasureResource;
 use App\Models\Measure;
+use App\Services\MeasureService;
 use Illuminate\Http\Request;
 
 class MeasureController extends Controller
 {
+    public function __construct(MeasureService $measureService)
+    {
+        $this->service = $measureService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class MeasureController extends Controller
      */
     public function index()
     {
-        //
+        return MeasureResource::collection($this->service->index());
     }
 
     /**
@@ -23,9 +30,9 @@ class MeasureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MeasureRequest $request)
     {
-        //
+        return new MeasureResource($this->service->store($request->validated()));
     }
 
     /**
@@ -36,7 +43,7 @@ class MeasureController extends Controller
      */
     public function show(Measure $measure)
     {
-        //
+        return new MeasureResource($this->service->show($measure));
     }
 
     /**
@@ -46,9 +53,9 @@ class MeasureController extends Controller
      * @param  \App\Models\Measure  $measure
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Measure $measure)
+    public function update(Measure $measure, MeasureRequest $request)
     {
-        //
+        return new MeasureResource($this->service->update($measure, $request->validated()));
     }
 
     /**
@@ -59,6 +66,6 @@ class MeasureController extends Controller
      */
     public function destroy(Measure $measure)
     {
-        //
+        return $measure->delete();
     }
 }

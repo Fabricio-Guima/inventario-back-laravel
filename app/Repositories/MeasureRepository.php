@@ -35,8 +35,10 @@ class MeasureRepository
     ])->first();
   }
 
-  public function update(String $measure, array $data)
+  public function update(Measure $measure, array $data)
   {
-    return $this->entity->where('id', $measure)->update($data);
+    $measure->fill($data);
+    $measure->save();
+    return $measure;
   }
 }
