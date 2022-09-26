@@ -17,7 +17,7 @@ class BrandService
 
   public function store(array $data)
   {
-    $this->repository->store($data);
+    return $this->repository->store($data);
   }
 
   public function getUserAuth(): User
