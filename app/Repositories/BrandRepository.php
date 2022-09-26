@@ -14,9 +14,8 @@ class BrandRepository
     $this->entity = $model;
   }
 
-  public function store(Brand $data)
+  public function store(array $data)
   {
-
     $result = $this->entity->create($data);
 
     return $result;

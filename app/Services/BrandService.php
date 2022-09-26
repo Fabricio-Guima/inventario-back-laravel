@@ -15,7 +15,7 @@ class BrandService
     $this->repository = $brandRepository;
   }
 
-  public function store(Brand $data)
+  public function store(array $data)
   {
     $this->repository->store($data);
   }
