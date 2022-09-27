@@ -47,7 +47,7 @@ class CategoryRepository
   {
     $result = $this->entity->where(function ($query) use ($filter) {
       if ($filter) {
-        $query->orWhere('name', 'LIKE', "%${filter}%")->orWhere('code', 'LIKE', "%${filter}%");
+        $query->Where('name', 'LIKE', "%${filter}%");
       }
     })->latest()
       ->paginate();

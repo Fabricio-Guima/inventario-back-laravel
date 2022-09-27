@@ -47,7 +47,7 @@ class ArticleRepository
   {
     $result = $this->entity->where(function ($query) use ($filter) {
       if ($filter) {
-        $query->orWhere('name', 'LIKE', "%${filter}%")->orWhere('code', 'LIKE', "%${filter}%");
+        $query->orWhere('name', 'LIKE', "%${filter}%")->orWhere('barcode', 'LIKE', "%${filter}%");
       }
     })->latest()
       ->paginate();

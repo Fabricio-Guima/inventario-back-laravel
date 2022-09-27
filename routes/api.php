@@ -33,10 +33,14 @@ Route::apiResource(
     CategoryController::class
 );
 
+Route::any('/search/categories',  [CategoryController::class, 'search']);
+
 Route::apiResource(
     '/articles',
     ArticleController::class
 );
+
+Route::any('/search/articles',  [ArticleController::class, 'search']);
 
 Route::apiResource(
     '/documents',

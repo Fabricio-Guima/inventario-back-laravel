@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\CategoryRequest;
+use App\Http\Resources\ArticleResource;
 use App\Models\Article;
+use App\Services\ArticleService;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    protected $service;
+
+    public function __construct(ArticleService $articleService)
+    {
+        $this->service = $articleService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return ['teste artigos'];
+        return ArticleResource::collection($this->service->index());
     }
 
     /**
@@ -26,7 +35,7 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        dd($request);
+        return new ArticleResource($this->service->store($request->validated()));
     }
 
     /**
@@ -37,7 +46,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return new ArticleResource($this->service->show($article));
     }
 
     /**
@@ -47,9 +56,9 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(CategoryRequest $request, Article $article)
     {
-        //
+        return new ArticleResource($this->service->update($article, $request->validated()));
     }
 
     /**
@@ -60,6 +69,13 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        return $article->delete();
+    }
+
+    public function search(Request $request)
+    {
+        $filter = $request->filter ?? '';
+
+        return $this->service->search($filter);
     }
 }
